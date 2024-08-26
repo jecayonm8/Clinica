@@ -2,8 +2,8 @@ package clinica.proyecto.clinica.model;
 
 import java.util.Objects;
 
-public class Cita {
-
+public class Cita implements PrototypeCita {
+    //atributos
     private String codigo;
     private String fecha;
     private String hora;
@@ -13,6 +13,7 @@ public class Cita {
     public Cita() {
     }
 
+    //constructor
     public Cita(String codigo, String fecha, String hora, TipoCita tipoCita, Paciente paciente) {
         this.codigo = codigo;
         this.fecha = fecha;
@@ -21,6 +22,7 @@ public class Cita {
         this.paciente = paciente;
     }
 
+    //getters y setters
     public String getCodigo() {
         return codigo;
     }
@@ -61,6 +63,7 @@ public class Cita {
         this.paciente = paciente;
     }
 
+    //metodo toString
     @Override
     public String toString() {
         return "Cita{" +
@@ -72,6 +75,7 @@ public class Cita {
                 '}';
     }
 
+    //metodo equals
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,8 +84,15 @@ public class Cita {
         return Objects.equals(codigo, cita.codigo) && Objects.equals(fecha, cita.fecha) && Objects.equals(hora, cita.hora) && tipoCita == cita.tipoCita && Objects.equals(paciente, cita.paciente);
     }
 
+    //metodo hasCode
     @Override
     public int hashCode() {
         return Objects.hash(codigo, fecha, hora, tipoCita, paciente);
+    }
+
+    //metodo clonar(prototype)
+    @Override
+    public Cita clonar() {
+        return new Cita(codigo, fecha, hora, tipoCita, paciente);
     }
 }

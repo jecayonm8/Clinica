@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Paciente {
 
+    //atributos
     private String nombre;
     private String cedula;
     private String telefono;
@@ -15,7 +16,8 @@ public class Paciente {
     //public Paciente() {
     //}
 
-    public Paciente(String nombre, String cedula, String telefono, String correo, String tipoSangre, ArrayList<Cita> listaCita) {
+    //constructor
+    public Paciente() {
         this.nombre = nombre;
         this.cedula = cedula;
         this.telefono = telefono;
@@ -27,6 +29,7 @@ public class Paciente {
     public Paciente(String nombre, String cedula, String telefono, String correo, String tipoSangre) {
     }
 
+    //getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -75,6 +78,7 @@ public class Paciente {
         this.listaCita = listaCita;
     }
 
+    //metodo toString
     @Override
     public String toString() {
         return "Paciente{" +
@@ -87,6 +91,7 @@ public class Paciente {
                 '}';
     }
 
+    //metodo equals: para comparar si dos objetos son "iguales" en términos de sus contenidos, no solo si son el mismo objeto en memoria.
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,6 +100,7 @@ public class Paciente {
         return Objects.equals(nombre, paciente.nombre) && Objects.equals(cedula, paciente.cedula) && Objects.equals(telefono, paciente.telefono) && Objects.equals(correo, paciente.correo) && Objects.equals(tipoSangre, paciente.tipoSangre) && Objects.equals(listaCita, paciente.listaCita);
     }
 
+    //metodo hashCode
     @Override
     public int hashCode() {
         return Objects.hash(nombre, cedula, telefono, correo, tipoSangre, listaCita);

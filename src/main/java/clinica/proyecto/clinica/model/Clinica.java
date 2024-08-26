@@ -7,22 +7,25 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Clinica {
-
+    //atributos
     private String nombre;
     private ArrayList<Paciente> listaPaciente = new ArrayList<>();
     private ArrayList<Cita> listaCita = new ArrayList<>();
+
 
     public Clinica() {
         super();
         Paciente paciente = new Paciente("Javier", "1223", "3190989797", "juanerscasallas@gmail.com", "O+");
     }
 
+    //constructor
     public Clinica(String nombre, ArrayList<Paciente> listaPaciente, ArrayList<Cita> listaCita) {
         this.nombre = nombre;
         this.listaPaciente = listaPaciente;
         this.listaCita = listaCita;
     }
 
+    //getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -47,6 +50,7 @@ public class Clinica {
         this.listaCita = listaCita;
     }
 
+    //metodo toString
     @Override
     public String toString() {
         return "Clinica{" +
@@ -56,6 +60,7 @@ public class Clinica {
                 '}';
     }
 
+    //metodo equals
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,12 +69,14 @@ public class Clinica {
         return Objects.equals(nombre, clinica.nombre) && Objects.equals(listaPaciente, clinica.listaPaciente) && Objects.equals(listaCita, clinica.listaCita);
     }
 
+    //metodo hashCode
     @Override
     public int hashCode() {
         return Objects.hash(nombre, listaPaciente, listaCita);
     }
 
-    public Paciente crearPaciente(Paciente paciente) throws PacienteException {
+    //metodo para crearPaciente
+    public void crearPaciente(Paciente paciente) throws PacienteException {
         Paciente nuevoPaciente = null;
         boolean pacienteExiste = verificarPacienteExistente(paciente.getCedula());
         if (pacienteExiste) {
@@ -85,15 +92,16 @@ public class Clinica {
 
             getListaPaciente().add(nuevoPaciente);
         }
-        return nuevoPaciente;
     }
 
+    //metodo para agregarPaciente
     public void agregarPaciente(Paciente nuevoPaciente) throws PacienteException {
         getListaPaciente().add(nuevoPaciente);
     }
 
 
-    public boolean actualizarPaciente(Paciente paciente) throws PacienteException {
+    //metodo actualizarPaciente
+    public void actualizarPaciente(Paciente paciente) throws PacienteException {
         Paciente pacienteActual = obtenerPaciente(paciente.getCedula());
         if (pacienteActual == null)
             throw new PacienteException("El Paciente a actualizar no existe");
@@ -103,10 +111,10 @@ public class Clinica {
             pacienteActual.setTelefono(paciente.getTelefono());
             pacienteActual.setCorreo(paciente.getCorreo());
             pacienteActual.setTipoSangre(paciente.getTipoSangre());
-            return true;
         }
     }
 
+    //metodo eliminarPaciente
     public Boolean eliminarPaciente(String cedula) throws PacienteException {
         Paciente paciente = null;
         boolean flagExiste = false;
@@ -121,6 +129,7 @@ public class Clinica {
     }
 
 
+    //metodo verificarPacienteExistente
     public boolean verificarPacienteExistente(String cedula) throws PacienteException {
         if (pacienteExiste(cedula)) {
             throw new PacienteException("El Paciente con cedula: " + cedula + " ya existe");
@@ -130,6 +139,7 @@ public class Clinica {
     }
 
 
+    //metodo obtenerPaciente
     public Paciente obtenerPaciente(String cedula) {
         Paciente pacienteEncontrado = null;
         for (Paciente paciente : getListaPaciente()) {
@@ -147,6 +157,7 @@ public class Clinica {
         return getListaPaciente();
     }
 
+    //metodo pacienteExiste
     public boolean pacienteExiste(String cedula) {
         boolean pacienteEncontrado = false;
         for (Paciente paciente : getListaPaciente()) {
