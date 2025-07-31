@@ -8,7 +8,7 @@ Aplicación de escritorio desarrollada en Java para simular el funcionamiento de
 
 - Java
 - Java Swing / JavaFX (según aplique)
-- NetBeans
+- Visual Studio Code
 
 ---
 
